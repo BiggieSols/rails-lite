@@ -9,6 +9,13 @@ class ControllerBase
     @req = req
     @res = res
     @route_params = route_params
+    @params = Params.new(req, route_params).params
+    puts "--------------------------------------------------"
+    puts "--------------------------------------------------"
+    puts "params are #{params.inspect}"
+    puts "--------------------------------------------------"
+    puts "--------------------------------------------------"
+
   end
 
   def session

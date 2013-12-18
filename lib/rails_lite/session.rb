@@ -7,16 +7,8 @@ class Session
   def initialize(req)
     @cookie = {}
     req.cookies.each do |cookie|
-      puts "cookie name is #{cookie.name}"
-      puts "cookie value is #{cookie.value}"
-      if cookie.name == "_rails_lite_app"
-        @cookie = JSON.parse(cookie.value)
-      end
+      @cookie = JSON.parse(cookie.value) if cookie.name == "_rails_lite_app"
     end
-    puts "-----------------"
-    puts "cookies are: #{req.cookies}"
-    puts "-----------------"
-
   end
 
   def [](key)
