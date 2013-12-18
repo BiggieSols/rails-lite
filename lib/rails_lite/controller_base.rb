@@ -5,7 +5,7 @@ require_relative 'session'
 class ControllerBase
   attr_reader :params
 
-  def initialize(req, res, route_params)
+  def initialize(req, res, route_params = {})
     @req = req
     @res = res
     @route_params = route_params
@@ -18,7 +18,8 @@ class ControllerBase
   end
 
   def redirect_to(url)
-    @res.set_redirect(302, url)
+    @res.header["location"] = url
+    @res.status = 302
   end
 
 
@@ -30,6 +31,13 @@ class ControllerBase
   end
 
   def render(template_name)
+    controller = self.class.to_s.underscore
+    file_type = "html.erb"
+    file_name = "views/#{controller}/#{template_name}.#{file_type}"
+    @name = "horatio"
+    f = File.read(file_name)
+    file_output = ERB.new(f).result(binding)
+    render_content(file_output, 'html')
   end
 
   def invoke_action(name)
