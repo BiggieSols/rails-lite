@@ -14,8 +14,12 @@ class ControllerBase
     @route_params = route_params
     @params = Params.new(req, route_params).params
 
+    # r = Router.new
+    # router_methods = r.methods - r.class.methods
+
     puts "--------------------------------------------------"
     puts "--------------------------------------------------"
+    puts "router methods are "
     puts "request path is #{req.path}"
     puts "request action is #{req.request_method}"
     puts "request uri is #{req.request_uri}"
