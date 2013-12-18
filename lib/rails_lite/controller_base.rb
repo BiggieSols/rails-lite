@@ -8,15 +8,19 @@ class ControllerBase
   attr_reader :params
 
   def initialize(req, res, route_params = {})
+    @already_built_response = false
     @req = req
     @res = res
     @route_params = route_params
     @params = Params.new(req, route_params).params
-    # puts "--------------------------------------------------"
-    # puts "--------------------------------------------------"
-    # puts "request body is #{req.body.inspect}"
-    # puts "--------------------------------------------------"
-    # puts "--------------------------------------------------"
+
+    puts "--------------------------------------------------"
+    puts "--------------------------------------------------"
+    puts "request path is #{req.path}"
+    puts "request action is #{req.request_method}"
+    puts "request uri is #{req.request_uri}"
+    puts "--------------------------------------------------"
+    puts "--------------------------------------------------"
 
   end
 
@@ -53,3 +57,7 @@ class ControllerBase
   def invoke_action(name)
   end
 end
+
+
+
+
