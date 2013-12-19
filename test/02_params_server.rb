@@ -39,3 +39,18 @@ server.mount_proc '/' do |req, res|
 end
 
 server.start
+
+
+=begin
+router draws routes
+request comes in from server
+router determines if request matches any existing routes (if not 404)
+if route matches, then the route "runs"
+when running, a route creates a new controller of the appropriate class
+  (based on http request)
+when the class is created, it is told to invoke_action
+  which action? this is given in the http request and should match the cntrlr method
+if there is a method, then great. otherwise try to render the template
+
+
+=end
